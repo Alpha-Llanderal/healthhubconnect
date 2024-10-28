@@ -11,22 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('phone_numbers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->string('phoneNumber');
+        Schema::create('insurances', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
-    
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
-    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('phone_numbers');
+        Schema::dropIfExists('insurances');
     }
 };
