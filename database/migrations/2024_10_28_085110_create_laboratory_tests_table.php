@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('fileURL');
             $table->timestamps();
     
+            // Foreign key constraint
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
