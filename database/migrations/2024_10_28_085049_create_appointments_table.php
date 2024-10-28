@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('appointments', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->date('date');
+            $table->string('doctor');
+            $table->string('reason');
+            $table->string('status')->default('scheduled');
+            $table->string('outcome')->nullable();
             $table->timestamps();
+    
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

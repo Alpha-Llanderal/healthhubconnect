@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('laboratory_tests', function (Blueprint $table) {
-            $table->id();
+        Schema::create('phone_numbers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->string('phoneNumber');
             $table->timestamps();
+    
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('laboratory_tests');
+        Schema::dropIfExists('phone_numbers');
     }
 };

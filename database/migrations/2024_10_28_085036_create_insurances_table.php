@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('insurances', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->string('provider');
+            $table->string('policyNumber');
+            $table->string('coverageType');
+            $table->date('validUntil');
             $table->timestamps();
+    
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
